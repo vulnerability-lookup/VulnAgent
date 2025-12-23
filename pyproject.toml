@@ -1,0 +1,19 @@
+[project]
+name = "vlagentic"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "Cédric Bonhomme", email = "cedric.bonhomme@circl.lu"}
+]
+readme = "README.md"
+# Change 'python' to 'requires-python'
+requires-python = ">=3.10,<3.15"
+dependencies = [
+    "spade-llm (>=0.2.0,<0.3.0)",
+    "transformers (>=4.57.3,<5.0.0)",
+    "torch (>=2.0.0)"
+]
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
