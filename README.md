@@ -36,3 +36,7 @@ scripts/run_agent.py
 ```
 
 It will be registered to the registry and presence notification system.
+
+Monitor incoming messages:
+
+![alt text](docs/agent-monitoring.png)
