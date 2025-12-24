@@ -72,7 +72,7 @@ spade run --client_port 6222 --server_port 6269
 then use the Web interface to create the agent's password.
 
 
-Alternatively (maybe even better), use Prosody. In this
+Alternatively (maybe even better, and it's what had been tested so far), use Prosody. In this
 case create the agent's password:
 
 ```bash
