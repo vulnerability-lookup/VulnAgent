@@ -10,7 +10,9 @@ class VLAISeverityClassifier:
         self.model.eval()
 
     def classify(self, text):
-        inputs = self.tokenizer(text, return_tensors="pt", truncation=True, padding=True)
+        inputs = self.tokenizer(
+            text, return_tensors="pt", truncation=True, padding=True
+        )
 
         with torch.no_grad():
             outputs = self.model(**inputs)
@@ -18,7 +20,7 @@ class VLAISeverityClassifier:
 
         idx = torch.argmax(probs).item()
         score = probs[idx].item()
-        labels = ["Low","Medium","High","Critical"]
+        labels = ["Low", "Medium", "High", "Critical"]
         label = labels[idx]
 
         return {

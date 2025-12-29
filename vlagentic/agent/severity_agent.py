@@ -1,8 +1,7 @@
 from spade_llm import LLMAgent, LLMTool
 
-from vlagentic.tools.severity_classifier import SeverityClassifierTool
 from vlagentic.agent.llm import get_llm_provider
-
+from vlagentic.tools.severity import SeverityClassifierTool
 
 # ---------------------------------------------------------------------------
 # Tool definition (agentic-style)
@@ -12,11 +11,13 @@ _classifier = SeverityClassifierTool(
     model_name="CIRCL/vulnerability-severity-classification-roberta-base"
 )
 
+
 async def classify_severity(text: str) -> dict:
     """
     Tool wrapper used by the LLM.
     """
     return _classifier(text)
+
 
 def get_weather(city: str) -> str:
     """Get weather information for major cities."""
@@ -44,13 +45,34 @@ severity_tool = LLMTool(
         "properties": {
             "text": {
                 "type": "string",
-                "description": "Vulnerability description to classify"
+                "description": "Vulnerability description to classify",
             }
         },
-        "required": ["text"]
+        "required": ["text"],
     },
     func=classify_severity,
 )
+
+
+cwe_tool = LLMTool(
+    name="classify_cwe",
+    description=(
+        "Guess the CWE vulnerability  based on its description using "
+        "the VLAI CWE RoBERTa-based model. Returns severity label and confidence."
+    ),
+    parameters={
+        "type": "object",
+        "properties": {
+            "text": {
+                "type": "string",
+                "description": "Vulnerability description to classify",
+            }
+        },
+        "required": ["text"],
+    },
+    func=classify_severity,
+)
+
 
 weather_tool = LLMTool(
     name="get_weather",
@@ -69,10 +91,10 @@ weather_tool = LLMTool(
 )
 
 
-
 # ---------------------------------------------------------------------------
 # Agent definition
 # ---------------------------------------------------------------------------
+
 
 class SeverityAgent(LLMAgent):
     def __init__(self, jid: str, password: str):
@@ -89,5 +111,3 @@ class SeverityAgent(LLMAgent):
             ),
             tools=[severity_tool, weather_tool],
         )
-
-

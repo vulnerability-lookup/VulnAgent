@@ -81,9 +81,8 @@ Password: password
 ```
 
 ```bash
-# python agent.py
 
-scripts/run_expert.py
+scripts/run_all.py
 ```
 
 It will be registered to the registry and presence notification system.
