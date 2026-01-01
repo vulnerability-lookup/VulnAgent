@@ -6,6 +6,7 @@ from spade_llm import LLMAgent
 
 from vlagentic.agent.llm import get_llm_provider
 
+
 class RouterBehaviour(CyclicBehaviour):
     def __init__(self, subagents):
         super().__init__()
@@ -27,7 +28,7 @@ class RouterBehaviour(CyclicBehaviour):
             target_agent = self.subagents["tool_assistant"]
 
         # Proper call to LLMAgent
-        response = await target_agent send_message_to_llm(msg.body)
+        response = await target_agent.send_message_to_llm(msg.body)
 
         # Send response back to ChatAgent
         reply = Message(to=original_sender)
@@ -46,12 +47,11 @@ class RouterAgent(Agent):
         self.add_behaviour(b)
 
 
-
 def init_router_agent(subagents):
     router_agent = LLMAgent(
         jid="router@localhost",
         password="password",
         provider=get_llm_provider(),
-        routing_function=smart_router  # Dynamic routing
+        routing_function=smart_router,  # Dynamic routing
     )
     return router_agent

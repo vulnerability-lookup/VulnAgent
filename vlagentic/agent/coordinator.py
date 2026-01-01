@@ -19,7 +19,6 @@ def routing_function(msg, response, context):
     return "tool_assistant@localhost"
 
 
-
 def init_coordinator_agent(domain: str):
     """
     Initialize a CoordinatorAgent with routing to two specialized LLM agents.

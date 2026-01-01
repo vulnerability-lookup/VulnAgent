@@ -94,7 +94,7 @@ async def main():
         print("Chat Agent Web Interface: http://127.0.0.1:10001/spade")
 
         # Run interactive chat
-        await chat_agent.run_interactive()
+        await chat_agent.run_interactive(response_timeout=300)
         # # Keep agents alive
         # while True:
         #     await asyncio.sleep(1)

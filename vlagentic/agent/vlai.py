@@ -30,7 +30,7 @@ def init_llm_vlai_agent(xmpp_server):
             "Explain results clearly and concisely for a security audience.\n"
             "If classification is not relevant, respond directly."
         ),
-        tools=[severity_tool, cwe_tool]
+        tools=[severity_tool, cwe_tool],
     )
     return llm_agent
 
@@ -45,6 +45,6 @@ def init_llm_tool_agent(xmpp_server):
             "Use these tools when appropriate to help users. "
             "You receive messages that may contain questions related to math, weather, time.\n"
         ),
-        tools=[weather_tool, current_time_tool, math_tool]
+        tools=[weather_tool, current_time_tool, math_tool],
     )
     return llm_agent
