@@ -77,14 +77,15 @@ async def main():
         print("✅ Agents started!")
         print("🔧 Available tools:")
         print("• classify_severity")
+        print("• classify_cwe")
         print("• get_current_time")
         print("• calculate_math")
         print("• get_weather")
         print("\n💡 Try these queries:")
+        print("• 'What's the severity of the vulnerability described by ...?'")
         print("• 'What time is it?'")
         print("• 'Calculate 15 * 8 + 32'")
-        print("• 'What's the weather in Madrid?'")
-        print("• 'What's the severity of the vulnerability described by ...?'")
+        print("• 'What's the weather in Luxembourg?'")
 
         # Start agents web interfaces
         await llm_agent.web.start(hostname="127.0.0.1", port="10000")
