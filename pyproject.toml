@@ -1,3 +1,8 @@
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+
 [project]
 name = "vlagentic"
 version = "0.1.0"
@@ -5,8 +10,11 @@ description = ""
 authors = [
     {name = "Cédric Bonhomme", email = "cedric.bonhomme@circl.lu"}
 ]
+license = "GPL-3.0-or-later"
 readme = "README.md"
-# Change 'python' to 'requires-python'
+
+dynamic = ["classifiers"]
+
 requires-python = ">=3.10,<3.15"
 dependencies = [
     "spade-llm (>=0.2.0,<0.3.0)",
@@ -14,6 +22,55 @@ dependencies = [
     "torch (>=2.0.0)"
 ]
 
-[build-system]
-requires = ["poetry-core>=2.0.0,<3.0.0"]
-build-backend = "poetry.core.masonry.api"
+
+[project.urls]
+Homepage = "https://github.com/vulnerability-lookup/VLAgentIc"
+Repository = "https://github.com/vulnerability-lookup/VLAgentIc"
+
+
+[project.scripts]
+vlagentic = "bin.run:main"
+
+
+[tool.poetry]
+requires-poetry = ">=2.0"
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "Topic :: Security",
+    "Operating System :: POSIX :: Linux",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)"
+]
+include = [
+    "README.md",
+    "COPYING",
+    "data/child_to_parent_mapping.json",
+]
+
+
+
+[tool.mypy]
+python_version = "3.13"
+check_untyped_defs = true
+ignore_errors = false
+ignore_missing_imports = true
+strict_optional = true
+no_implicit_optional = true
+warn_unused_ignores = true
+warn_redundant_casts = true
+warn_unused_configs = true
+warn_unreachable = true
+
+show_error_context = true
+pretty = true
+
+exclude = "build|dist|docs"
+
+[tool.isort]
+profile = "black"
