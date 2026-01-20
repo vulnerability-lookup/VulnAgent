@@ -171,5 +171,12 @@ Chat session ended.
 Agents are registered to the registry and presence notification system.
 
 
+## License
 
+[VulnAgent](https://github.com/vulnerability-lookup/VulnAgent) is free software released under the
+[GNU General Public License version 3](https://www.gnu.org/licenses/gpl-3.0.html).
 
+~~~
+Copyright (c) 2025-2026 Computer Incident Response Center Luxembourg (CIRCL)
+Copyright (c) 2025-2026 Cédric Bonhomme - https://github.com/cedricbonhomme
+~~~
