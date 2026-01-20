@@ -84,7 +84,7 @@ Communications via XMPP/FIPA.
 
 
 
-Install Ollama
+### Install Ollama
 
 ```bash
 curl -fsSL https://ollama.ai/install.sh | sh
@@ -113,24 +113,60 @@ $ sudo prosodyctl adduser user@localhost
 $ sudo prosodyctl adduser coordinator@localhost
 ```
 
+
+### Install the project
+
 ```bash
 $ cd VulnAgent/
 $ poetry install
 $ poetry shell
-$ vulnagent
+```
+
+### Launch the agents
+
+```bash
+$ vulnagent-llm
 Device set to use cpu
 XMPP server domain (default: localhost): 
+LLM provider to use (default: qwen2.5:7b):   
+Agent name (default: tool_assistant): 
 LLM agent password: 
+LLM Agent Web Interface: http://127.0.0.1:10000/spade
+Press Ctrl+C to exit.
+```
+
+```bash
+$ vulnagent-chat 
+XMPP server domain (default: localhost): 
+Agent name (default: chat_agent): 
 Chat agent password: 
-✅ Agents started!
+✅ Agent started!
 🔧 Available tools:
 • classify_severity
 • classify_cwe
-...
-...
+• get_current_time
+• calculate_math
+• get_weather
+
+💡 Try these queries:
+• 'What's the severity of the vulnerability described by ...?'
+• 'What time is it?'
+• 'Calculate 15 * 8 + 32'
+• 'What's the weather in Luxembourg?'
+
+Chat session started. Type 'exit' to quit.
+
+> What is the severity of a vulnerability described with: The Advanced Custom Fields: Extended plugin for WordPress is vulnerable to Privilege Escalation in all versions up to, and including, 0.9.2.1. This is due to the 'insert_user' function not restricting the roles with which a user can register. This makes it possible for unauthenticated attackers to supply the 'administrator' role during registration and gain administrator access to the site. Note: The vulnerability can only be exploited if 'role' is mapped to the custom field.    
+╭──────────────────────────────────────────────────────────────────────────────────────── 🗨  tool_assistant@localhost/BFxpWUtCE0n3 ─────────────────────────────────────────────────────────────────────────────────────────╮
+│ The severity of the described vulnerability is classified as Critical with a confidence of 58.26%. This indicates that the vulnerability poses a significant risk and should be addressed promptly to prevent             │
+│ unauthorized access or privilege escalation.                                                                                                                                                                              │
+╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+> exit
+
+Chat session ended.
 ```
 
-Agents be registered to the registry and presence notification system.
+Agents are registered to the registry and presence notification system.
 
 
 
