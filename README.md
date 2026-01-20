@@ -1,5 +1,7 @@
 # VulnAgent
 
+![VulnAgent](docs/VulnAgent-logo-transparent.png)
+
 VulnAgent is an experimental AI-assisted cybersecurity agent framework that orchestrates modular agents using LLMs and domain-specific tools, communicating over XMPP.
 It combines reasoning with custom vulnerability tooling (e.g., severity and CWE classification, Vulnerability-Lookup API) to automate tasks such as vulnerability classification and interaction with security workflows.
 
