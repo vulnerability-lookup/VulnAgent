@@ -1,6 +1,6 @@
 import getpass
 
-from spade_llm import LLMAgent, LLMProvider
+from spade_llm import LLMAgent, LLMProvider # pyright: ignore[reportMissingImports]
 
 from vulnagent.tools.current_time import current_time_tool
 from vulnagent.tools.cwe import cwe_classify_tool, vulnerability_per_cwe_tool
@@ -9,13 +9,17 @@ from vulnagent.tools.severity import severity_tool
 from vulnagent.tools.weather import weather_tool
 
 
-def get_llm_provider(model="qwen2.5:7b", temperature=0.7):
+def get_llm_provider(
+    model: str = "qwen2.5:7b",
+    base_url: str = "http://localhost:11434/v1",
+    temperature: float = 0.7,
+):
     """
     Returns an LLMProvider configured for Ollama.
     (qwen2.5:7b, llama3.1:8b)
     """
     return LLMProvider.create_ollama(
-        model=model, base_url="http://localhost:11434/v1", temperature=temperature
+        model=model, base_url=base_url, temperature=temperature
     )
 
 
@@ -59,14 +63,17 @@ def init_llm_agent(xmpp_server, agent_name="tool_assistant", llm_provider="qwen2
     :param xmpp_server: Address of the XMPP server (default: localhost)
     """
     llm_provider = input("LLM provider to use (default: qwen2.5:7b): ") or llm_provider
+    base_url = (
+        input("LLM provider base URL (default: http://localhost:11434/v1): ")
+        or "http://localhost:11434/v1"
+    )
     agent_name = input("Agent name (default: tool_assistant): ") or agent_name
 
     llm_agent = LLMAgent(
         jid=f"{agent_name}@{xmpp_server}",
         password=getpass.getpass("LLM agent password: "),
-        provider=get_llm_provider(model=llm_provider),
+        provider=get_llm_provider(model=llm_provider, base_url=base_url),
         system_prompt=system_prompt,
         tools=tools,
     )
-
     return llm_agent
