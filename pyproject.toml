@@ -29,9 +29,9 @@ Repository = "https://github.com/vulnerability-lookup/VulnAgent"
 
 
 [project.scripts]
-vulnagent = "bin.run:main"
-vulnagent-llm = "bin.run_llm:main"
-vulnagent-chat = "bin.run_chat:main"
+vulnagent = "vulnagent.cli:main"
+vulnagent-llm = "vulnagent.cli_llm:main"
+vulnagent-chat = "vulnagent.cli_chat:main"
 
 
 [tool.poetry]

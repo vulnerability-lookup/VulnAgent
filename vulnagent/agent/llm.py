@@ -58,8 +58,8 @@ def init_llm_agent(xmpp_server, agent_name="tool_assistant", llm_provider="qwen2
 
     :param xmpp_server: Address of the XMPP server (default: localhost)
     """
-    agent_name = input("Agent name (default: tool_assistant): ") or agent_name
     llm_provider = input("LLM provider to use (default: qwen2.5:7b): ") or llm_provider
+    agent_name = input("Agent name (default: tool_assistant): ") or agent_name
 
     llm_agent = LLMAgent(
         jid=f"{agent_name}@{xmpp_server}",
