@@ -1,6 +1,6 @@
 from spade_llm.agent import CoordinatorAgent
 from spade.message import Message
-from vlagentic.agent.llm import get_llm_provider
+from vulnagent.agent.llm import get_llm_provider
 
 
 def routing_function(msg, response, context):

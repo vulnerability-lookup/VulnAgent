@@ -2,8 +2,8 @@ import spade
 from spade.behaviour import CyclicBehaviour
 from spade.message import Message
 
-from vlagentic.agent.chat import init_chat_agent
-from vlagentic.agent.llm import init_llm_agent
+from vulnagent.agent.chat import init_chat_agent
+from vulnagent.agent.llm import init_llm_agent
 
 
 class AutoAcceptPresence(CyclicBehaviour):

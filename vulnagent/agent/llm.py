@@ -2,11 +2,11 @@ import getpass
 
 from spade_llm import LLMAgent, LLMProvider
 
-from vlagentic.tools.current_time import current_time_tool
-from vlagentic.tools.cwe import cwe_classify_tool, vulnerability_per_cwe_tool
-from vlagentic.tools.calculate import math_tool
-from vlagentic.tools.severity import severity_tool
-from vlagentic.tools.weather import weather_tool
+from vulnagent.tools.current_time import current_time_tool
+from vulnagent.tools.cwe import cwe_classify_tool, vulnerability_per_cwe_tool
+from vulnagent.tools.calculate import math_tool
+from vulnagent.tools.severity import severity_tool
+from vulnagent.tools.weather import weather_tool
 
 
 def get_llm_provider(model="qwen2.5:7b", temperature=0.7):

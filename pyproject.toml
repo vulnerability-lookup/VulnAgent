@@ -4,7 +4,7 @@ build-backend = "poetry.core.masonry.api"
 
 
 [project]
-name = "VLAgentIc"
+name = "VulnAgent"
 version = "0.1.0"
 description = ""
 authors = [
@@ -24,14 +24,14 @@ dependencies = [
 
 
 [project.urls]
-Homepage = "https://github.com/vulnerability-lookup/VLAgentIc"
-Repository = "https://github.com/vulnerability-lookup/VLAgentIc"
+Homepage = "https://github.com/vulnerability-lookup/VulnAgent"
+Repository = "https://github.com/vulnerability-lookup/VulnAgent"
 
 
 [project.scripts]
-vlagentic = "bin.run:main"
-vlagentic-llm = "bin.run_llm:main"
-vlagentic-chat = "bin.run_chat:main"
+vulnagent = "bin.run:main"
+vulnagent-llm = "bin.run_llm:main"
+vulnagent-chat = "bin.run_chat:main"
 
 
 [tool.poetry]

@@ -1,7 +1,7 @@
 from spade.agent import Agent
 from spade.behaviour import CyclicBehaviour
 from spade.message import Message
-from vlagentic.tools.severity_classifier import SeverityClassifierTool
+from vulnagent.tools.severity_classifier import SeverityClassifierTool
 
 
 class TestSeverityAgent(Agent):

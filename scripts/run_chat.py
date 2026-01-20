@@ -1,6 +1,6 @@
 import spade
 
-from vlagentic.agent.chat import init_chat_agent
+from vulnagent.agent.chat import init_chat_agent
 
 
 async def main():

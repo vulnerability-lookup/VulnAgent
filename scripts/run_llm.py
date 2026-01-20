@@ -2,7 +2,7 @@ import asyncio
 
 import spade
 
-from vlagentic.agent.llm import init_llm_agent
+from vulnagent.agent.llm import init_llm_agent
 
 
 async def main():

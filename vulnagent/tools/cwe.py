@@ -1,7 +1,7 @@
 import requests
 from spade_llm import LLMTool
 
-from vlagentic.models.cwe import VLAICWEClassifier
+from vulnagent.models.cwe import VLAICWEClassifier
 
 
 #

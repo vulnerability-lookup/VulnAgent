@@ -1,6 +1,6 @@
 from spade_llm import LLMTool
 
-from vlagentic.models.vlai import VLAISeverityClassifier
+from vulnagent.models.vlai import VLAISeverityClassifier
 
 
 class SeverityClassifierTool:

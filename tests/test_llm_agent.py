@@ -1,7 +1,7 @@
 import asyncio
 
 from spade.message import Message
-from vlagentic.agent.severity_agent import SeverityAgent
+from vulnagent.agent.severity_agent import SeverityAgent
 
 
 async def main():

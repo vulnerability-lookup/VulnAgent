@@ -1,12 +1,12 @@
 from spade_llm import LLMAgent
 
-from vlagentic.agent.llm import get_llm_provider
+from vulnagent.agent.llm import get_llm_provider
 
-from vlagentic.tools.current_time import current_time_tool
-from vlagentic.tools.cwe import cwe_tool
-from vlagentic.tools.calculate import math_tool
-from vlagentic.tools.severity import severity_tool
-from vlagentic.tools.weather import weather_tool
+from vulnagent.tools.current_time import current_time_tool
+from vulnagent.tools.cwe import cwe_tool
+from vulnagent.tools.calculate import math_tool
+from vulnagent.tools.severity import severity_tool
+from vulnagent.tools.weather import weather_tool
 
 tools = [
     severity_tool,

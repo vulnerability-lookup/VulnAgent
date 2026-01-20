@@ -4,7 +4,7 @@ from spade.message import Message
 
 from spade_llm import LLMAgent
 
-from vlagentic.agent.llm import get_llm_provider
+from vulnagent.agent.llm import get_llm_provider
 
 
 class RouterBehaviour(CyclicBehaviour):

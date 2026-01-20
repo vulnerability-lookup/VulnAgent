@@ -1,9 +1,9 @@
-# VLAgentIc
+# VulnAgent
 
-VLAgentIc is an experimental AI-assisted cybersecurity agent framework that orchestrates modular agents using LLMs and domain-specific tools, communicating over XMPP.
+VulnAgent is an experimental AI-assisted cybersecurity agent framework that orchestrates modular agents using LLMs and domain-specific tools, communicating over XMPP.
 It combines reasoning with custom vulnerability tooling (e.g., severity and CWE classification, Vulnerability-Lookup API) to automate tasks such as vulnerability classification and interaction with security workflows.
 
-While the concept of AI agents—models coupled with tools and orchestration logic—has become fairly standardized, VLAgentIc explores a distinctive approach tailored to cybersecurity.
+While the concept of AI agents—models coupled with tools and orchestration logic—has become fairly standardized, VulnAgent explores a distinctive approach tailored to cybersecurity.
 Its agents communicate over XMPP, leveraging native support for asynchronous messaging, concurrent behaviours, presence, and discovery, making it well suited for distributed, agentic security workflows.
 
 
@@ -34,7 +34,7 @@ graph LR
 ```
 
 Human-in-the-loop is still in work and will be probably linked to the Vulnerability-Lookup API tool.  
-The LLM provider can be configured in ``vlagentic.agent.llm:get_llm_provider()``. The default is ``qwen2.5:7b``.
+The LLM provider can be configured in ``vulnagent.agent.llm:get_llm_provider()``. The default is ``qwen2.5:7b``.
 
 
 **Component Overview:**
@@ -58,7 +58,7 @@ The **LLMAgent** (Qwen) leverages the
 ## Agent Principle
 
 ```text
-VLAgentIcAgent
+VulnAgent
  ├── Reasoning (LLM via spade-llm, Ollama or API)
  ├── Tools
  │    ├── SeverityClassifierTool (RoBERTa)
@@ -114,10 +114,10 @@ $ sudo prosodyctl adduser coordinator@localhost
 ```
 
 ```bash
-$ cd VLAgentIc/
+$ cd VulnAgent/
 $ poetry install
 $ poetry shell
-$ vlagentic
+$ vulnagent
 Device set to use cpu
 XMPP server domain (default: localhost): 
 LLM agent password: 
