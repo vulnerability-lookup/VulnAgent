@@ -1,9 +1,10 @@
 # VLAgentIc
 
-The concept of an AI agent—combining models, tools, and orchestration logic—has become fairly standardized over the past year.  
-Common patterns and frameworks for building such agents are also emerging.  
+VLAgentIc is an experimental AI-assisted cybersecurity agent framework that orchestrates modular agents using LLMs and domain-specific tools, communicating over XMPP.
+It combines reasoning with custom vulnerability tooling (e.g., severity and CWE classification, Vulnerability-Lookup API) to automate tasks such as vulnerability classification and interaction with security workflows.
 
-While AI agents are becoming more common, **VLAgentIc** explores a unique approach in AI-assisted cybersecurity. Its agents communicate over XMPP, benefiting from behaviours for concurrent tasks, mailboxes for asynchronous messaging, and built-in presence and discovery support.
+While the concept of AI agents—models coupled with tools and orchestration logic—has become fairly standardized, VLAgentIc explores a distinctive approach tailored to cybersecurity.
+Its agents communicate over XMPP, leveraging native support for asynchronous messaging, concurrent behaviours, presence, and discovery, making it well suited for distributed, agentic security workflows.
 
 
 ## Features
