@@ -19,6 +19,12 @@ Its agents communicate over XMPP, leveraging native support for asynchronous mes
 
 ## Architecture
 
+
+![Global architecture](docs/architecture.png)
+
+
+**Inter-agent communication**
+
 ```mermaid
 graph LR
     Ch[Chat Agent] <--> A[LLMAgent]
