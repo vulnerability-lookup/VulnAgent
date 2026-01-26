@@ -1,6 +1,6 @@
 import getpass
 
-from spade_llm import LLMAgent, LLMProvider # pyright: ignore[reportMissingImports]
+from spade_llm import LLMAgent, LLMProvider  # pyright: ignore[reportMissingImports]
 
 from vulnagent.tools.current_time import current_time_tool
 from vulnagent.tools.cwe import cwe_classify_tool, vulnerability_per_cwe_tool
@@ -16,7 +16,6 @@ def get_llm_provider(
 ):
     """
     Returns an LLMProvider configured for Ollama.
-    (qwen2.5:7b, llama3.1:8b)
     """
     return LLMProvider.create_ollama(
         model=model, base_url=base_url, temperature=temperature

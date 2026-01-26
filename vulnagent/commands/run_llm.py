@@ -1,6 +1,6 @@
 import asyncio
 
-import spade # pyright: ignore[reportMissingImports]
+import spade  # pyright: ignore[reportMissingImports]
 
 from vulnagent.agent.llm import init_llm_agent
 
