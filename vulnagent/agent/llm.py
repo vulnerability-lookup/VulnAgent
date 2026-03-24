@@ -5,7 +5,7 @@ from spade_llm import LLMAgent, LLMProvider  # pyright: ignore[reportMissingImpo
 from vulnagent.tools.current_time import current_time_tool
 from vulnagent.tools.cwe import cwe_classify_tool, vulnerability_per_cwe_tool
 from vulnagent.tools.calculate import math_tool
-from vulnagent.tools.severity import severity_tool
+from vulnagent.tools.severity import severity_tool, severity_zh_tool
 from vulnagent.tools.weather import weather_tool
 
 
@@ -24,6 +24,7 @@ def get_llm_provider(
 
 tools = [
     severity_tool,
+    severity_zh_tool,
     cwe_classify_tool,
     vulnerability_per_cwe_tool,
     weather_tool,
@@ -37,11 +38,14 @@ system_prompt = (
     "You can use the following tools when appropriate:\n"
     "- classify_cwe: classify a vulnerability description into CWE categories\n"
     "- classify_severity: classify a vulnerability severity\n"
+    "- classify_severity_zh: classify a vulnerability severity from a Chinese description\n"
     "- vulnerability_info_by_cwe: retrieve recent vulnerabilities for a given CWE ID\n"
     "- get_current_time, calculate_math, get_weather for general assistance\n\n"
     "Tool usage guidelines:\n"
     "- If the user provides a vulnerability description and asks for classification, "
     "use classify_cwe and/or classify_severity.\n"
+    "- If the vulnerability description is written in Chinese, "
+    "use classify_severity_zh instead of classify_severity.\n"
     "- If the user asks for recent or known vulnerabilities for a specific CWE "
     "(e.g. 'recent vulnerabilities for CWE-119'), "
     "use vulnerability_info_by_cwe.\n"

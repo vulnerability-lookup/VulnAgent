@@ -47,3 +47,35 @@ severity_tool = LLMTool(
     },
     func=classify_severity,
 )
+
+
+_classifier_zh = SeverityClassifierTool(
+    model_name="CIRCL/vulnerability-severity-classification-chinese-macbert-base"
+)
+
+
+async def classify_severity_zh(text: str) -> dict:
+    """
+    Tool wrapper used by the LLM for Chinese vulnerability descriptions.
+    """
+    return _classifier_zh(text)
+
+
+severity_zh_tool = LLMTool(
+    name="classify_severity_zh",
+    description=(
+        "Classify the severity of a vulnerability description written in Chinese "
+        "using the VLAI MacBERT-based model. Returns severity label and confidence."
+    ),
+    parameters={
+        "type": "object",
+        "properties": {
+            "text": {
+                "type": "string",
+                "description": "Vulnerability description in Chinese to classify",
+            }
+        },
+        "required": ["text"],
+    },
+    func=classify_severity_zh,
+)
