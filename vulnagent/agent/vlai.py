@@ -8,14 +8,6 @@ from vulnagent.tools.calculate import math_tool
 from vulnagent.tools.severity import severity_tool
 from vulnagent.tools.weather import weather_tool
 
-tools = [
-    severity_tool,
-    cwe_tool,
-    weather_tool,
-    current_time_tool,
-    math_tool,
-]
-
 
 def init_llm_vlai_agent(xmpp_server):
     llm_agent = LLMAgent(

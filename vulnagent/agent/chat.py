@@ -2,7 +2,7 @@ import getpass
 import json
 
 from rich import box
-from rich.console import Console
+from rich.console import Console, Group
 from rich.panel import Panel
 from rich.table import Table
 from rich.text import Text
@@ -58,9 +58,11 @@ def display_response(message: str, sender: str = "Tool Assistant", **metadata):
     # Compose full panel
     if metadata_panel:
         console.print(
-            Panel.fit(
-                Panel(message_text, title=header, box=box.ROUNDED, style="green"),
-                metadata_panel,
+            Panel(
+                Group(
+                    Panel(message_text, title=header, box=box.ROUNDED, style="green"),
+                    metadata_panel,
+                ),
                 box=box.SQUARE,
             )
         )
