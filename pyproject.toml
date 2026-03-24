@@ -5,7 +5,7 @@ build-backend = "poetry.core.masonry.api"
 
 [project]
 name = "VulnAgent"
-version = "0.1.0"
+version = "0.2.0"
 description = ""
 authors = [
     {name = "Cédric Bonhomme", email = "cedric.bonhomme@circl.lu"}
