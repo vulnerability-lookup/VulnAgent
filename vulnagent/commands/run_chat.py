@@ -1,10 +1,13 @@
 import spade
 
 from vulnagent.agent.chat import init_chat_agent
+from vulnagent.config import get_config
 
 
 async def main():
-    xmpp_server = input("XMPP server domain (default: localhost): ") or "localhost"
+    cfg = get_config()
+    default_server = cfg["xmpp"]["server"]
+    xmpp_server = input(f"XMPP server domain (default: {default_server}): ") or default_server
 
     chat_agent = init_chat_agent(xmpp_server)
 

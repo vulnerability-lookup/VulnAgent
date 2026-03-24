@@ -2,6 +2,7 @@ import getpass
 
 from spade_llm import LLMAgent, LLMProvider  # pyright: ignore[reportMissingImports]
 
+from vulnagent.config import get_config
 from vulnagent.tools.current_time import current_time_tool
 from vulnagent.tools.cwe import cwe_classify_tool, vulnerability_per_cwe_tool
 from vulnagent.tools.calculate import math_tool
@@ -59,22 +60,27 @@ system_prompt = (
 )
 
 
-def init_llm_agent(xmpp_server, agent_name="tool_assistant", llm_provider="qwen2.5:7b"):
+def init_llm_agent(xmpp_server):
     """
     Initializes the LLM Agent.
 
-    :param xmpp_server: Address of the XMPP server (default: localhost)
+    :param xmpp_server: Address of the XMPP server
     """
-    llm_provider = input("LLM provider to use (default: qwen2.5:7b): ") or llm_provider
+    cfg = get_config()
+    agent_cfg = cfg["agents"]["llm"]
+    llm_cfg = cfg["llm"]
+
+    llm_provider = input(f"LLM provider to use (default: {llm_cfg['provider']}): ") or llm_cfg["provider"]
     base_url = (
-        input("LLM provider base URL (default: http://localhost:11434/v1): ")
-        or "http://localhost:11434/v1"
+        input(f"LLM provider base URL (default: {llm_cfg['base_url']}): ")
+        or llm_cfg["base_url"]
     )
-    agent_name = input("Agent name (default: tool_assistant): ") or agent_name
+    agent_name = input(f"Agent name (default: {agent_cfg['name']}): ") or agent_cfg["name"]
+    password = agent_cfg.get("password") or getpass.getpass("LLM agent password: ")
 
     llm_agent = LLMAgent(
         jid=f"{agent_name}@{xmpp_server}",
-        password=getpass.getpass("LLM agent password: "),
+        password=password,
         provider=get_llm_provider(model=llm_provider, base_url=base_url),
         system_prompt=system_prompt,
         tools=tools,

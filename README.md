@@ -58,7 +58,8 @@ The LLM provider can be configured in ``vulnagent.agent.llm:get_llm_provider()``
 | **MCP**            | Multi-channel publisher for STDIO or HTTP streaming outputs.                       |
 
 The **LLMAgent** (Qwen) leverages the
-[VLAI Severity classification](https://huggingface.co/CIRCL/vulnerability-severity-classification-roberta-base) and
+[VLAI Severity classification](https://huggingface.co/CIRCL/vulnerability-severity-classification-roberta-base),
+[VLAI Severity classification (Chinese)](https://huggingface.co/CIRCL/vulnerability-severity-classification-chinese-macbert-base), and
 [VLAI CWE classification](https://huggingface.co/CIRCL/cwe-parent-vulnerability-classification-roberta-base) models as integrated tools, enabling automated vulnerability severity assessment and CWE categorization within its reasoning workflow.
 
 
@@ -70,6 +71,7 @@ VulnAgent
  ├── Reasoning (LLM via spade-llm, Ollama or API)
  ├── Tools
  │    ├── SeverityClassifierTool (RoBERTa)
+ │    ├── SeverityClassifierTool Chinese (MacBERT)
  │    ├── CVSS normalizer tool (planned)
  │    └── Other extensible tools
  └── Actions / Messages
@@ -151,6 +153,7 @@ Chat agent password:
 ✅ Agent started!
 🔧 Available tools:
 • classify_severity
+• classify_severity_zh
 • classify_cwe
 • get_current_time
 • calculate_math
@@ -175,6 +178,58 @@ Chat session ended.
 ```
 
 Agents are registered to the registry and presence notification system.
+
+
+## Configuration
+
+VulnAgent uses a TOML configuration file to manage defaults for XMPP server, agent names, passwords, and LLM provider settings. All values have built-in defaults, so the configuration file is entirely optional.
+
+The configuration file is loaded from (in order of priority):
+
+1. The path specified by the `VULNAGENT_CONFIG` environment variable
+2. `~/.config/vulnagent/config.toml` (follows XDG conventions)
+
+If no configuration file is found, the built-in defaults are used.
+
+Example `~/.config/vulnagent/config.toml`:
+
+```toml
+[xmpp]
+server = "localhost"
+
+[agents.llm]
+name = "tool_assistant"
+password = "password"
+
+[agents.chat]
+name = "chat_agent"
+password = "password"
+
+[agents.vlai]
+name = "vlai_assistant"
+password = "password"
+
+[agents.coordinator]
+name = "coordinator"
+password = "password"
+
+[llm]
+provider = "qwen2.5:7b"
+base_url = "http://localhost:11434/v1"
+temperature = 0.7
+```
+
+You only need to include the values you want to override. For example, to change just the LLM provider and XMPP server:
+
+```toml
+[xmpp]
+server = "xmpp.example.com"
+
+[llm]
+provider = "llama3.1:8b"
+```
+
+When a password is set in the configuration file, the interactive password prompt is skipped. To force a prompt, remove the password entry from the configuration file.
 
 
 ## License

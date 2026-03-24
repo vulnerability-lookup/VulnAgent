@@ -1,6 +1,7 @@
 from spade_llm import LLMAgent
 
 from vulnagent.agent.llm import get_llm_provider
+from vulnagent.config import get_config
 
 from vulnagent.tools.current_time import current_time_tool
 from vulnagent.tools.cwe import cwe_tool
@@ -10,9 +11,12 @@ from vulnagent.tools.weather import weather_tool
 
 
 def init_llm_vlai_agent(xmpp_server):
+    cfg = get_config()
+    agent_cfg = cfg["agents"]["vlai"]
+
     llm_agent = LLMAgent(
-        jid=f"vlai_assistant@{xmpp_server}",
-        password="password",
+        jid=f"{agent_cfg['name']}@{xmpp_server}",
+        password=agent_cfg["password"],
         provider=get_llm_provider(),
         system_prompt=(
             "You are a helpful assistant with access to tools: classify_severity, classify_cwe. "
@@ -28,9 +32,12 @@ def init_llm_vlai_agent(xmpp_server):
 
 
 def init_llm_tool_agent(xmpp_server):
+    cfg = get_config()
+    agent_cfg = cfg["agents"]["llm"]
+
     llm_agent = LLMAgent(
-        jid=f"tool_assistant@{xmpp_server}",
-        password="password",
+        jid=f"{agent_cfg['name']}@{xmpp_server}",
+        password=agent_cfg["password"],
         provider=get_llm_provider(),
         system_prompt=(
             "You are a helpful assistant with access to tools: get_current_time, calculate_math, and get_weather. "

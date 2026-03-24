@@ -8,6 +8,8 @@ from rich.table import Table
 from rich.text import Text
 from spade_llm import ChatAgent
 
+from vulnagent.config import get_config
+
 console = Console()
 
 
@@ -70,13 +72,18 @@ def display_response(message: str, sender: str = "Tool Assistant", **metadata):
         console.print(Panel(message_text, title=header, box=box.ROUNDED, style="green"))
 
 
-def init_chat_agent(xmpp_server, agent_name="chat_agent"):
-    agent_name = input("Agent name (default: chat_agent): ") or agent_name
+def init_chat_agent(xmpp_server):
+    cfg = get_config()
+    agent_cfg = cfg["agents"]["chat"]
+    llm_agent_name = cfg["agents"]["llm"]["name"]
+
+    agent_name = input(f"Agent name (default: {agent_cfg['name']}): ") or agent_cfg["name"]
+    password = agent_cfg.get("password") or getpass.getpass("Chat agent password: ")
 
     chat_agent = ChatAgent(
         jid=f"{agent_name}@{xmpp_server}",
-        password=getpass.getpass("Chat agent password: "),
-        target_agent_jid=f"tool_assistant@{xmpp_server}",
+        password=password,
+        target_agent_jid=f"{llm_agent_name}@{xmpp_server}",
         display_callback=display_response,
     )
 

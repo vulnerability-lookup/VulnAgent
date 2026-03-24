@@ -3,7 +3,8 @@ from spade.behaviour import CyclicBehaviour
 from spade.message import Message
 
 from vulnagent.agent.chat import init_chat_agent
-from vulnagent.agent.llm import init_llm_agent
+from vulnagent.agent.llm import init_llm_agent, tools
+from vulnagent.config import get_config
 
 
 class AutoAcceptPresence(CyclicBehaviour):
@@ -51,7 +52,9 @@ class WebUIBridge(CyclicBehaviour):
 
 
 async def main():
-    xmpp_server = input("XMPP server domain (default: localhost): ") or "localhost"
+    cfg = get_config()
+    default_server = cfg["xmpp"]["server"]
+    xmpp_server = input(f"XMPP server domain (default: {default_server}): ") or default_server
 
     llm_agent = init_llm_agent(xmpp_server)
     chat_agent = init_chat_agent(xmpp_server)
@@ -76,11 +79,8 @@ async def main():
 
         print("✅ Agents started!")
         print("🔧 Available tools:")
-        print("• classify_severity")
-        print("• classify_cwe")
-        print("• get_current_time")
-        print("• calculate_math")
-        print("• get_weather")
+        for tool in tools:
+            print(f"• {tool.name}")
         print("\n💡 Try these queries:")
         print("• 'What's the severity of the vulnerability described by ...?'")
         print("• 'What time is it?'")

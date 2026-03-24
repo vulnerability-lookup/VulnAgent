@@ -3,10 +3,13 @@ import asyncio
 import spade  # pyright: ignore[reportMissingImports]
 
 from vulnagent.agent.llm import init_llm_agent
+from vulnagent.config import get_config
 
 
 async def main():
-    xmpp_server = input("XMPP server domain (default: localhost): ") or "localhost"
+    cfg = get_config()
+    default_server = cfg["xmpp"]["server"]
+    xmpp_server = input(f"XMPP server domain (default: {default_server}): ") or default_server
     llm_agent = init_llm_agent(xmpp_server)
 
     try:
